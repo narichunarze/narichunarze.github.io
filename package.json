@@ -1,0 +1,14 @@
+{
+  "name": "portafolio-nari-chun",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Portafolio personal de Nari Chun (sitio estático para GitHub Pages)",
+  "scripts": {
+    "build:css": "tailwindcss -i ./tailwind.input.css -o ./css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./tailwind.input.css -o ./css/tailwind.css --watch",
+    "serve": "npx --yes http-server . -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

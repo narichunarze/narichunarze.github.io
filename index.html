@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nari Chun · AI Developer</title>
+<meta name="description" content="Portafolio de Nari Chun, Ingeniera en Sistemas Computacionales y AI Developer: IA aplicada, datos y automatización.">
+<meta name="theme-color" content="#0E0819">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nari Chun · AI Developer">
+<meta property="og:description" content="Traduzco problemas de negocio en sistemas que funcionan: IA aplicada, BI y automatización.">
+<meta property="og:image" content="media/og-image.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/tailwind.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">nari.chun</a>
+    <span class="flex-1"></span>
+    <nav class="nav-links hidden md:flex items-center gap-7" aria-label="Main" id="navLinks">
+      <a href="#proyectos" data-i18n="nav_projects"></a>
+      <a href="#experiencia" data-i18n="nav_exp"></a>
+      <a href="#stack" data-i18n="nav_stack"></a>
+      <a href="#contacto" data-i18n="nav_contact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button type="button" class="menu-btn inline-flex md:hidden" id="menuBtn" aria-expanded="false" aria-controls="mmenu" data-i18n="menu"></button>
+  </div>
+  <div class="mmenu md:hidden" id="mmenu" hidden>
+    <div class="wrap">
+      <a href="#proyectos" data-i18n="nav_projects"></a>
+      <a href="#experiencia" data-i18n="nav_exp"></a>
+      <a href="#stack" data-i18n="nav_stack"></a>
+      <a href="#contacto" data-i18n="nav_contact"></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 1 · PORTADA -->
+  <section class="hero" id="top" aria-labelledby="heroName">
+    <canvas id="horizon" aria-hidden="true"></canvas>
+    <div class="wrap hero-body">
+      <div>
+        <p class="label"><b>//</b> system_init · <span data-i18n="hero_label"></span></p>
+        <h1 class="name" id="heroName">Nari<br>Chun</h1>
+      </div>
+      <div>
+        <p class="hero-about" data-i18n="profile_text"></p>
+        <div class="cta" style="margin-top:24px">
+          <a class="btn" href="#proyectos"><span data-i18n="cta_projects"></span> <span aria-hidden="true">→</span></a>
+          <a class="ulink" href="#contacto">narichunaze@gmail.com</a>
+        </div>
+        <p class="label" style="margin-top:22px" data-i18n="hero_langs"></p>
+      </div>
+    </div>
+    <div class="hero-status" aria-hidden="true">
+      <div class="wrap"><span class="label"><span class="pulse"></span>online · session <span id="sid">----</span></span><span class="label">render <span id="fps">60</span> fps</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · CIFRAS -->
+  <section class="sec sec-compact" id="impacto" aria-labelledby="h-impact">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="label"><b>//</b> impact_metrics</p><h2 class="h2 h2-sm" id="h-impact" data-i18n="impact_title"></h2></div>
+        <p class="note" data-i18n="impact_note"></p>
+      </div>
+      <div class="impact" id="impact"></div>
+    </div>
+  </section>
+
+  <!-- 4 · PROYECTOS -->
+  <section class="sec" id="proyectos" aria-labelledby="h-projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="label"><b>//</b> deployed_applications</p><h2 class="h2" id="h-projects" data-i18n="projects_title"></h2></div>
+        <p class="note" data-i18n="projects_note"></p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter" id="filters"></div>
+      <ul class="plist" id="plist"></ul>
+    </div>
+  </section>
+
+  <!-- 5 · EXPERIENCIA -->
+  <section class="sec" id="experiencia" aria-labelledby="h-exp">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="label"><b>//</b> execution_log</p><h2 class="h2" id="h-exp" data-i18n="exp_title"></h2></div>
+        <p class="note" data-i18n="exp_note"></p>
+      </div>
+      <div class="xp-list" id="xpList"></div>
+      <div class="lead-block">
+        <p class="label"><b>//</b> leadership</p>
+        <h3 class="h3" data-i18n="lead_title"></h3>
+        <div class="lead-grid" id="leadGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · STACK Y FORMACIÓN -->
+  <section class="sec" id="stack" aria-labelledby="h-stack">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="label"><b>//</b> core_capabilities</p><h2 class="h2" id="h-stack" data-i18n="stack_title"></h2></div>
+        <p class="note" data-i18n="stack_note"></p>
+      </div>
+      <div class="graph-wrap">
+        <div class="graph-stage"><canvas id="graph" aria-hidden="true"></canvas></div>
+        <aside class="graph-panel" aria-live="polite">
+          <div class="graph-legend" id="graphLegend"></div>
+          <div id="graphInfo"></div>
+        </aside>
+      </div>
+      <details class="skills-all"><summary data-i18n="full_list"></summary><div class="stack" id="stackGrid"></div></details>
+      <div class="edu" id="edu"></div>
+    </div>
+  </section>
+
+  <!-- 7 · CONTACTO -->
+  <section class="sec" id="contacto" aria-labelledby="h-contact">
+    <div class="wrap">
+      <p class="label"><b>//</b> open_port</p>
+      <h2 class="contact-title" id="h-contact" data-i18n="contact_title"></h2>
+      <div class="mail-row">
+        <a class="mail" href="mailto:narichunaze@gmail.com">narichunaze@gmail.com</a>
+        <button type="button" class="copy" id="copyBtn" data-i18n="copy"></button>
+      </div>
+      <div class="socials">
+        <a href="https://linkedin.com/in/narichun" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
+        <a href="https://github.com/narichunarze" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="label">© 2026 Nari Chun · Santa Cruz de la Sierra, BO</span>
+    <span class="label" id="sig" title="">sha256:········</span>
+  </div>
+</footer>
+
+<div class="float media" id="float" aria-hidden="true"><span class="m-label" id="floatLabel"></span></div>
+
+<div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="caseTitle" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
