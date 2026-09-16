@@ -122,7 +122,7 @@ a{color:inherit}
 .media::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(14,8,25,.35) 0 2px,transparent 2px 4px)}
 .media video,.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .media-note{margin-top:10px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
-.case-media video{object-fit:contain;background:#0E0819}
+.case-media video,.case-media img{object-fit:contain;background:#0E0819}
 .media .m-label{position:absolute;left:14px;bottom:12px;z-index:2;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(14,8,25,.72);padding:5px 8px}
 @keyframes spin{to{transform:rotate(1turn)}}
 .float{position:fixed;left:0;top:0;width:340px;pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .2s,transform .25s}
