@@ -4,7 +4,8 @@
 export const I18N = {
   es: {
     nav_profile: 'Sobre mí', nav_projects: 'Proyectos', nav_exp: 'Experiencia', nav_stack: 'Stack', nav_contact: 'Contacto', menu: 'menú',
-    hero_label: 'ai developer · santa cruz de la sierra, bo',
+    hero_label: 'applied ai engineer · santa cruz de la sierra, bo',
+    hero_role: 'Applied AI Engineer: conecto modelos de IA con <em>decisiones de negocio</em>.',
     hero_langs: 'idiomas de trabajo · <b>español · inglés · alemán</b>',
     hero_tag: 'Sistemas que se ejecutan solos.',
     hero_sub: 'IA aplicada, datos y automatización de punta a punta: desde el CSV sucio hasta el dashboard que el directorio sí lee.',
@@ -42,7 +43,8 @@ export const I18N = {
   },
   en: {
     nav_profile: 'About', nav_projects: 'Projects', nav_exp: 'Experience', nav_stack: 'Stack', nav_contact: 'Contact', menu: 'menu',
-    hero_label: 'ai developer · santa cruz de la sierra, bo',
+    hero_label: 'applied ai engineer · santa cruz de la sierra, bo',
+    hero_role: 'Applied AI Engineer: I connect AI models to <em>business decisions</em>.',
     hero_langs: 'working languages · <b>spanish · english · german</b>',
     hero_tag: 'Systems that run themselves.',
     hero_sub: 'Applied AI, data and automation end to end: from the dirty CSV to the dashboard the board actually reads.',
@@ -121,8 +123,9 @@ export const PROJECTS = [
   { slug: 'review-sentiment-mbert', title: 'Review Sentiment mBERT', org: 'LoopStyle', hue: 40, tags: ['ai', 'nlp', 'ml'], media: { type: 'image', src: 'media/review-sentiment-mbert.jpg' },
     role: { es: 'AI Developer · oct 2025 – jun 2026', en: 'AI Developer · Oct 2025 – Jun 2026' },
     problem: { es: 'Las reseñas de clientes y productos llegaban como texto libre: imposibles de leer una por una y difíciles de clasificar con precisión usando modelos genéricos.', en: 'Customer and product reviews arrived as free text: impossible to read one by one and hard to classify accurately with generic models.' },
-    solution: { es: 'Pipeline NLP de punta a punta para análisis de sentimiento, con fine-tuning de modelos BERT multilingües para mejorar la precisión de clasificación.', en: 'End-to-end NLP pipeline for sentiment analysis, fine-tuning multilingual BERT models to improve classification accuracy.' },
+    solution: { es: 'Una señal de sentimiento por producto y proveedor para decidir qué recomprar y a quién volver a comprar. Detrás: un pipeline NLP de punta a punta con fine-tuning de BERT multilingüe para mejorar la precisión.', en: 'A sentiment signal per product and supplier to decide what to reorder and who to buy from again. Under the hood: an end-to-end NLP pipeline with fine-tuned multilingual BERT for better accuracy.' },
     metrics: [
+      { v: { es: 'Decisión', en: 'Decision' }, l: { es: 'qué productos recomprar y a qué proveedores repetir', en: 'which products to reorder and which suppliers to repeat' } },
       { v: 'mBERT', l: { es: 'BERT multilingüe con fine-tuning', en: 'fine-tuned multilingual BERT' } },
       { v: 'E2E', l: { es: 'pipeline completo: texto crudo → sentimiento', en: 'full pipeline: raw text → sentiment' } },
     ],
@@ -130,8 +133,9 @@ export const PROJECTS = [
   { slug: 'demand-forecast-prophet', title: 'Demand Forecast', org: 'LoopStyle', hue: -40, tags: ['ml', 'data'], media: { type: 'image', src: 'media/demand-forecast-prophet.jpg' },
     role: { es: 'AI Developer · oct 2025 – jun 2026', en: 'AI Developer · Oct 2025 – Jun 2026' },
     problem: { es: 'Sin proyecciones de demanda, el inventario se gestionaba de forma reactiva: el agotamiento de stock se notaba cuando ya había ocurrido.', en: 'Without demand projections, inventory was managed reactively: stock-outs were noticed after they happened.' },
-    solution: { es: 'Modelos de series de tiempo con Prophet para predecir tendencias de demanda y agotamiento de stock, como base para una gestión de inventario proactiva.', en: 'Prophet time-series models to predict demand trends and stock depletion, as the basis for proactive inventory management.' },
+    solution: { es: 'Una alerta de cuándo reponer cada producto antes de que se agote, para pasar de un inventario reactivo a uno anticipado. Detrás: modelos de series de tiempo con Prophet que predicen la demanda y el agotamiento de stock.', en: 'An alert for when to restock each product before it runs out, moving inventory from reactive to proactive. Under the hood: Prophet time-series models that predict demand and stock depletion.' },
     metrics: [
+      { v: { es: 'Decisión', en: 'Decision' }, l: { es: 'cuándo reponer, antes de que se agote el stock', en: 'when to restock, before items run out' } },
       { v: 'Prophet', l: { es: 'modelo de series de tiempo', en: 'time-series model' } },
       { v: '2', l: { es: 'señales: tendencia de demanda y agotamiento de stock', en: 'signals: demand trend and stock depletion' } },
     ],
@@ -166,8 +170,8 @@ export const EXPERIENCE = [
     ], cases: ['invoice-automation-ai', 'hr-analytics-platform'] },
   { date: { es: 'oct 2025 – jun 2026', en: 'Oct 2025 – Jun 2026' }, org: 'LoopStyle', role: 'AI Developer', loc: { es: 'Santa Cruz de la Sierra', en: 'Santa Cruz de la Sierra' },
     bullets: [
-      { es: 'Diseñé y construí un pipeline NLP de punta a punta para análisis de sentimiento en reseñas, con fine-tuning de modelos BERT multilingües.', en: 'Designed and built an end-to-end NLP pipeline for review sentiment analysis, fine-tuning multilingual BERT models.' },
-      { es: 'Desarrollé modelos de forecasting con Prophet para predecir tendencias de demanda y agotamiento de stock.', en: 'Developed Prophet forecasting models to predict demand trends and stock depletion.' },
+      { es: 'Convertí las reseñas en texto libre en una señal para decidir qué productos recomprar y a qué proveedores repetir, con un pipeline NLP de punta a punta y fine-tuning de BERT multilingüe.', en: 'Turned free-text reviews into a signal for deciding which products to reorder and which suppliers to repeat, with an end-to-end NLP pipeline and fine-tuned multilingual BERT.' },
+      { es: 'Pasé la reposición de inventario de reactiva a anticipada: modelos de forecasting con Prophet que indican cuándo reponer antes de que se agote el stock.', en: 'Moved inventory restocking from reactive to proactive: Prophet forecasting models that flag when to restock before items run out.' },
     ], cases: ['review-sentiment-mbert', 'demand-forecast-prophet'] },
   { date: { es: 'may – sep 2025', en: 'May – Sep 2025' }, org: 'Telecel S.A. (Tigo)', role: { es: 'Pasante, Fraude e Investigaciones', en: 'Intern, Fraud & Investigations' }, loc: { es: 'Santa Cruz de la Sierra', en: 'Santa Cruz de la Sierra' },
     bullets: [
