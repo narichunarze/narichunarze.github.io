@@ -1,4 +1,4 @@
-import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU, SIM } from './data.js';
+import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU, SIM } from './data.js?v=20261125b';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
