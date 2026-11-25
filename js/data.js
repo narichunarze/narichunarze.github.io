@@ -16,7 +16,14 @@ export const I18N = {
     impact_title: 'Impacto medible.',
     impact_note: 'Cifras de proyectos reales. Las marcadas como objetivo son metas de diseño del sistema, no resultados ya medidos.',
     projects_title: 'Proyectos.',
-    projects_note: 'Seis sistemas, de automatización con LLMs a análisis de datos públicos. Abre cada uno para ver el problema, la solución y los resultados.',
+    projects_note: 'Siete sistemas, de un lakehouse en Databricks a automatización con LLMs. Abre cada uno para ver el problema, la solución y los resultados.',
+    sim_live_text: 'Pruébalo: elige una política de reposición y mira cómo cambian los quiebres por talla.', sim_live_sample: 'talla M · quiebre 13% → 3% · venta perdida −57%', sim_live_cta: 'Abrir simulador →', sim_float: '▶ simulador interactivo · clic para probar',
+    sim_title: 'Simulador de reposición', sim_note: 'El mismo año, con exactamente la misma demanda, repetido con tres políticas. Datos reales del backtest del proyecto (KPIs: promedio de 3 semillas; gráfico: semilla 42).',
+    sim_pol: { even_split: 'Reparto parejo (hoy)', size_curve: 'Curva de tallas', size_aware: 'Curva + demanda sin censura' },
+    sim_desc: { even_split: 'Práctica actual: el pedido de cada modelo-color se reparte en partes iguales entre tallas.', size_curve: 'Mismo total, repartido según la curva de tallas observada. Sin comprar más inventario.', size_aware: 'La solución: curva de tallas + demanda sin censura (venta + venta perdida estimada).' },
+    sim_k: ['Tasa de quiebre', 'Fill rate', 'Unidades perdidas / año', 'Inventario promedio'], sim_vs: 'vs. hoy', sim_base: 'línea base',
+    sim_chart: 'Tasa de quiebre por talla', sim_today: 'Hoy', sim_curve_title: 'La causa: demanda vs. stock por talla', sim_demand: 'Demanda', sim_stock: 'Stock',
+    gallery_title: 'Recorrido del caso de estudio', case_live: 'Ver caso de estudio interactivo', note_synthetic: 'Grabación del caso de estudio interactivo · cliente simulado y datos sintéticos.',
     all: 'todos', count: n => `${n} de ${PROJECTS.length}`,
     exp_title: 'Experiencia.',
     exp_note: 'Cuatro organizaciones, de telecomunicaciones a un organismo internacional, y experiencias de liderazgo fuera del trabajo.',
@@ -55,7 +62,14 @@ export const I18N = {
     impact_title: 'Measured impact.',
     impact_note: 'Figures from real projects. Those marked as target are system design goals, not results already measured.',
     projects_title: 'Projects.',
-    projects_note: 'Six systems, from LLM automation to public data analysis. Open each one to see the problem, the solution and the results.',
+    projects_note: 'Seven systems, from a Databricks lakehouse to LLM automation. Open each one to see the problem, the solution and the results.',
+    sim_live_text: 'Try it: pick a replenishment policy and watch stockouts change by size.', sim_live_sample: 'size M · stockout 13% → 3% · lost sales −57%', sim_live_cta: 'Open simulator →', sim_float: '▶ interactive simulator · click to try',
+    sim_title: 'Replenishment simulator', sim_note: 'The same year, with exactly the same demand, replayed under three policies. Real data from the project backtest (KPIs: average of 3 seeds; chart: seed 42).',
+    sim_pol: { even_split: 'Even split (today)', size_curve: 'Size curve', size_aware: 'Size curve + uncensored demand' },
+    sim_desc: { even_split: 'Today’s practice: each model-color order is split evenly across sizes.', size_curve: 'Same total, allocated by the observed size curve. No extra inventory purchased.', size_aware: 'The solution: size curve + uncensored demand (sales + estimated lost sales).' },
+    sim_k: ['Stockout rate', 'Fill rate', 'Lost units / year', 'Average inventory'], sim_vs: 'vs. today', sim_base: 'baseline',
+    sim_chart: 'Stockout rate by size', sim_today: 'Today', sim_curve_title: 'The cause: demand vs. stock by size', sim_demand: 'Demand', sim_stock: 'Stock',
+    gallery_title: 'Case study walkthrough', case_live: 'View interactive case study', note_synthetic: 'Recording of the interactive case study · simulated client and synthetic data.',
     all: 'all', count: n => `${n} of ${PROJECTS.length}`,
     exp_title: 'Experience.',
     exp_note: 'Four organizations, from telecom to an international organization, plus leadership beyond work.',
@@ -89,6 +103,7 @@ export const FACTS = [
 ];
 
 export const IMPACT = [
+  { n: '−57%', l: { es: 'Venta perdida con el mismo inventario, en un backtest contrafactual de la política de reposición en Databricks.', en: 'Lost sales at the same inventory, in a counterfactual backtest of a replenishment policy on Databricks.' }, org: { es: 'Proyecto propio · Databricks', en: 'Personal project · Databricks' }, slug: 'retail-lakehouse-databricks' },
   { n: '−75%', l: { es: 'Tiempo de procesamiento de facturas: de 8 h a 2 h por cliente a la semana.', en: 'Invoice processing time: from 8 h to 2 h per client per week.' }, org: 'Moreno Baldivieso', target: true, slug: 'invoice-automation-ai' },
   { n: '21K+', l: { es: 'Filas de datos oficiales del INE analizadas en 5 datasets.', en: 'Rows of official INE data analyzed across 5 datasets.' }, org: { es: 'Proyecto propio', en: 'Personal project' }, slug: 'bolivia-education-analysis' },
   { n: { es: '3 días', en: '3 days' }, l: { es: 'De un CSV crudo a una plataforma de HR analytics con dashboards para dos audiencias.', en: 'From a raw CSV to an HR analytics platform with dashboards for two audiences.' }, org: 'Moreno Baldivieso', slug: 'hr-analytics-platform' },
@@ -101,6 +116,25 @@ export const TAG_LABEL = Object.fromEntries(TAGS.filter(x => x[1]).map(([k, v]) 
 
 /* media: para agregar un video luego → media: { type: 'video', src: 'media/invoice.mp4' } */
 export const PROJECTS = [
+  { slug: 'retail-lakehouse-databricks', title: 'Retail Lakehouse on Databricks', org: { es: 'Proyecto propio', en: 'Personal project' }, hue: 200, tags: ['data', 'ml', 'ai'], sim: true,
+    media: { type: 'video', src: 'media/retail-lakehouse-databricks.mp4', poster: 'media/retail-lakehouse-databricks.jpg', note: 'synthetic' },
+    gallery: [
+      { src: 'media/retail-lakehouse-finding.jpg', cap: { es: 'El hallazgo: M y L son más de la mitad de la demanda pero reciben el mismo stock que XS.', en: 'The finding: M and L are over half of demand yet get the same stock as XS.' } },
+      { src: 'media/retail-lakehouse-simulator.jpg', cap: { es: 'Backtest contrafactual: misma demanda, tres políticas de reposición.', en: 'Counterfactual backtest: same demand, three replenishment policies.' } },
+      { src: 'media/retail-lakehouse-architecture.jpg', cap: { es: 'Arquitectura en Databricks: Bronze → Silver → Gold → quality gate → MLflow → Genie.', en: 'Databricks architecture: Bronze → Silver → Gold → quality gate → MLflow → Genie.' } },
+      { src: 'media/retail-lakehouse-results.jpg', cap: { es: 'Forecast vs. baselines, estimador validado contra la verdad y Genie 12/12.', en: 'Forecast vs. baselines, estimator validated against ground truth and Genie 12/12.' } },
+    ],
+    link: 'https://github.com/narichunarze/RetailClothingStore', live: 'https://narichunarze.github.io/RetailClothingStore/',
+    role: { es: 'Engagement FDE simulado · nov 2026', en: 'Simulated FDE engagement · Nov 2026' },
+    problem: { es: 'Una cadena de ropa (cliente simulado, 12 tiendas en 4 países) se quedaba sin tallas M y L mientras liquidaba XS y XXL. Los reportes se armaban a mano en Excel y no había forecast. Lo encaré como un engagement de Forward Deployed Engineer: llegar sin especificaciones, hacer discovery con el negocio y entregar en producción.', en: 'A clothing chain (simulated client, 12 stores in 4 countries) kept running out of sizes M and L while discounting XS and XXL. Reports were built by hand in Excel and there was no forecast. I treated it as a Forward Deployed Engineer engagement: arrive with no spec, run discovery with the business and ship to production.' },
+    solution: { es: 'Un lakehouse en Databricks de punta a punta: ingesta incremental con Auto Loader, reglas de calidad con cuarentena, capa Gold con quiebres y venta perdida estimada, un forecast semanal registrado en MLflow, una política de reposición por curva de tallas y un agente Genie que responde en español. Todo desplegado como código con Asset Bundles y GitHub Actions, y desarrollado AI-first con Claude Code, registrando qué corregí de lo que generó la IA.', en: 'An end-to-end lakehouse on Databricks: incremental ingestion with Auto Loader, data-quality rules with quarantine, a Gold layer with stockouts and estimated lost sales, a weekly forecast registered in MLflow, a size-curve replenishment policy and a Genie agent that answers in Spanish. All deployed as code with Asset Bundles and GitHub Actions, and built AI-first with Claude Code, logging what I fixed in the AI-generated code.' },
+    metrics: [
+      { v: '−57%', l: { es: 'venta perdida con el mismo inventario (backtest contrafactual)', en: 'lost sales at the same inventory (counterfactual backtest)' } },
+      { v: '13% → 3%', l: { es: 'tasa de quiebre en talla M', en: 'stockout rate in size M' } },
+      { v: '60% → 8%', l: { es: 'error del estimador de venta perdida, tras depurarlo contra la verdad', en: 'lost-sales estimator error, after debugging it against ground truth' } },
+      { v: '12/12', l: { es: 'benchmarks del agente Genie (6 → 9 → 10 → 12)', en: 'Genie agent benchmarks (6 → 9 → 10 → 12)' } },
+    ],
+    stack: ['Databricks', 'Lakeflow Pipelines', 'Auto Loader', 'Delta Lake', 'Unity Catalog', 'Lakeflow Jobs', 'MLflow', 'Genie', 'PySpark', 'SQL', 'scikit-learn', 'Asset Bundles', 'GitHub Actions', 'pytest', 'Claude Code'] },
   { slug: 'ai-data-risk-scanner', title: 'AI Data Risk Scanner', org: { es: 'Proyecto propio', en: 'Personal project' }, hue: -20, tags: ['ai', 'nlp', 'security'], media: null, demo: true, link: 'https://github.com/narichunarze/AI-Data-Risk-Scanner',
     role: { es: 'Proyecto propio', en: 'Personal project' },
     problem: { es: 'Datos personales, información financiera y credenciales terminan escondidos en texto no estructurado, donde nadie los busca hasta que se filtran.', en: 'Personal data, financial information and credentials end up hidden in unstructured text, where nobody looks until they leak.' },
@@ -161,6 +195,9 @@ export const PROJECTS = [
     stack: ['Python', 'pandas', 'ETL', 'EDA', 'Data Visualization'] },
 ];
 
+/* datos del simulador (backtest real del proyecto RetailClothingStore: src/data_gen/export_site_data.py) */
+export const SIM = {"sizes":["XS","S","M","L","XL","XXL"],"demand":[0.06,0.1807,0.2998,0.2591,0.1402,0.0603],"stock":[0.2324,0.1454,0.1056,0.1175,0.1662,0.2328],"policies":{"even_split":{"by_size":[0.0039,0.0453,0.1306,0.0994,0.0254,0.0037],"stockout":0.0552,"fill":0.95,"lost":37247,"inv":44305},"size_curve":{"by_size":[0.0394,0.0375,0.0385,0.0382,0.0375,0.0408],"stockout":0.0381,"fill":0.9765,"lost":17502,"inv":43149},"size_aware":{"by_size":[0.0362,0.0336,0.0351,0.0344,0.0342,0.0363],"stockout":0.0348,"fill":0.9784,"lost":16135,"inv":44480}}};
+
 export const EXPERIENCE = [
   { date: { es: 'jul – ago 2026', en: 'Jul – Aug 2026' }, org: 'Moreno Baldivieso', role: 'AI Developer', loc: { es: 'Santa Cruz de la Sierra', en: 'Santa Cruz de la Sierra' },
     bullets: [
@@ -186,9 +223,9 @@ export const EXPERIENCE = [
 ];
 
 export const STACK = [
-  { k: 'ai_ml', title: { es: 'IA y Machine Learning', en: 'AI & Machine Learning' }, items: ['Generative AI', 'Agentic AI', 'LLMs', 'RAG', 'Prompt Engineering', 'NLP', 'BERT / mBERT', 'Sentiment Analysis', 'SVM', 'Logistic Regression', 'Naive Bayes', 'Neural Networks', 'Prophet', 'Predictive Analytics', 'Human-in-the-loop'] },
-  { k: 'data_bi', title: { es: 'Datos y BI', en: 'Data & BI' }, items: ['Python', 'pandas', 'SQL', 'Power BI', 'Statistical Analysis', 'Data Visualization', 'KPI Development', 'Data Cleaning & ETL', 'EDA'] },
-  { k: 'automation', title: { es: 'Automatización e ingeniería', en: 'Automation & engineering' }, items: ['Power Automate', 'Web Scraping', 'Cron', 'Docker / Compose', 'REST APIs', 'React', 'Node.js', 'TypeScript', 'Odoo', 'Git / GitHub', 'Linux'] },
+  { k: 'ai_ml', title: { es: 'IA y Machine Learning', en: 'AI & Machine Learning' }, items: ['Generative AI', 'Agentic AI', 'Genie (Databricks)', 'AI-assisted development (Claude Code)', 'LLMs', 'RAG', 'Prompt Engineering', 'NLP', 'BERT / mBERT', 'Sentiment Analysis', 'SVM', 'Logistic Regression', 'Naive Bayes', 'Neural Networks', 'Prophet', 'Predictive Analytics', 'Human-in-the-loop'] },
+  { k: 'data_bi', title: { es: 'Datos y BI', en: 'Data & BI' }, items: ['Databricks', 'PySpark', 'Lakeflow Pipelines', 'Delta Lake', 'Unity Catalog', 'MLflow', 'Python', 'pandas', 'SQL', 'Power BI', 'Statistical Analysis', 'Data Visualization', 'KPI Development', 'Data Cleaning & ETL', 'EDA'] },
+  { k: 'automation', title: { es: 'Automatización e ingeniería', en: 'Automation & engineering' }, items: ['Power Automate', 'Web Scraping', 'Cron', 'Docker / Compose', 'REST APIs', 'React', 'Node.js', 'TypeScript', 'Odoo', 'Git / GitHub', 'GitHub Actions (CI/CD)', 'Asset Bundles', 'pytest', 'Linux'] },
   { k: 'product', title: { es: 'Producto y procesos', en: 'Product & process' }, items: ['Requirements Gathering', 'Stakeholder Reporting', 'ITIL', 'Process Optimization', 'Project Management', 'Cross-functional Collaboration'] },
 ];
 

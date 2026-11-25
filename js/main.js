@@ -1,4 +1,4 @@
-import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU } from './data.js';
+import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU, SIM } from './data.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -35,11 +35,12 @@ function renderFilters() {
 }
 function renderProjects() {
   $('#plist').innerHTML = PROJECTS.map(p => `
-    <li class="prow${p.demo ? ' live' : ''}" data-tags="${p.tags.join(' ')}">
+    <li class="prow${p.demo || p.sim ? ' live' : ''}" data-tags="${p.tags.join(' ')}">
       <a href="#/case/${p.slug}" data-slug="${p.slug}">
         <span class="p-title">${p.title}</span>
         <span class="p-side"><span class="hidden sm:inline">${L(p.role).split('·').pop().trim()}</span><span class="arr" aria-hidden="true">↗</span></span>
         <span class="p-meta"><span class="org">${L(p.org)}</span>${p.tags.map(x => `<span>${L(TAG_LABEL[x])}</span>`).join('')}</span>
+        ${p.sim ? `<span class="live-strip"><span class="live-tag">${t('live_tag')}</span><span class="live-text">${t('sim_live_text')}</span><span class="live-sample sim-sample" aria-hidden="true"><b class="ss-bars"><i style="--h:.30;--d:0s"></i><i style="--h:1;--d:.15s"></i><i style="--h:.76;--d:.3s"></i><i style="--h:.2;--d:.45s"></i></b>${t('sim_live_sample')}</span><span class="live-cta">${t('sim_live_cta')}</span></span>` : ''}
         ${p.demo ? `<span class="live-strip"><span class="live-tag">${t('live_tag')}</span><span class="live-text">${t('live_text')}</span><span class="live-sample" aria-hidden="true">password: <i style="--d:0s">Verano#2026</i> · CI <i style="--d:.35s">4839201</i> · <i style="--d:.7s">4111 1111 1111 1111</i></span><span class="live-cta">${t('live_cta')}</span></span>` : ''}
       </a>
     </li>`).join('');
@@ -112,6 +113,7 @@ function renderCase(slug) {
       <h1 class="case-title" id="caseTitle" tabindex="-1">${p.title}</h1>
       <div class="case-tags">${p.tags.map(x => `<span class="chip">${L(TAG_LABEL[x])}</span>`).join('')}</div>
       ${p.demo ? demoHTML() : p.media ? `<div class="case-media media" style="--hue:${p.hue}deg">${mediaHTML(p, true)}</div>${p.media.note ? `<p class="media-note">${t('note_' + p.media.note)}</p>` : ''}` : ''}
+      ${p.sim ? simHTML() : ''}
       <div class="case-grid">
         <section><h2>${t('case_problem')}</h2><p>${L(p.problem)}</p></section>
         <section><h2>${t('case_solution')}</h2><p>${L(p.solution)}</p></section>
@@ -120,10 +122,11 @@ function renderCase(slug) {
         <h2>${t('case_results')}</h2>
         <div class="metrics">${p.metrics.map(m => `<div class="metric"><span class="metric-v grad-text">${L(m.v)}</span><span class="metric-l">${L(m.l)}</span>${m.target ? `<span><span class="tag-target">${t('target')}</span></span>` : ''}</div>`).join('')}</div>
       </section>
+      ${p.gallery ? `<section class="case-block"><h2>${t('gallery_title')}</h2><div class="gallery">${p.gallery.map(g => `<figure><a href="${g.src}" target="_blank" rel="noopener"><img src="${g.src}" alt="${L(g.cap)}" loading="lazy"></a><figcaption>${L(g.cap)}</figcaption></figure>`).join('')}</div></section>` : ''}
       <section class="case-block">
         <h2>${t('case_stack')}</h2>
         <div class="case-tags" style="margin-top:0">${p.stack.map(s => `<span class="chip">${s}</span>`).join('')}</div>
-        <div class="case-links" style="margin-top:22px">${p.link ? `<a class="ulink" href="${p.link}" target="_blank" rel="noopener noreferrer">${t('case_repo')} ↗</a>` : `<span class="priv">${t('case_private')}</span>`}</div>
+        <div class="case-links" style="margin-top:22px">${p.live ? `<a class="btn" href="${p.live}" target="_blank" rel="noopener noreferrer">${t('case_live')} <span aria-hidden="true">↗</span></a>` : ''}${p.link ? `<a class="ulink" href="${p.link}" target="_blank" rel="noopener noreferrer">${t('case_repo')} ↗</a>` : `<span class="priv">${t('case_private')}</span>`}</div>
       </section>
       <nav class="case-nav" aria-label="Projects">
         <a href="#/case/${prev.slug}"><span class="label">${t('case_prev')}</span><strong>${prev.title}</strong></a>
@@ -131,6 +134,7 @@ function renderCase(slug) {
       </nav>
     </article>`;
   if (p.demo) initDemo();
+  if (p.sim) initSim();
 }
 function openCase(slug) {
   if (caseEl.hidden) lastFocus = document.activeElement;
@@ -358,15 +362,75 @@ function initDemo() {
   renderScan(!reduce);
 }
 
+/* ================= replenishment simulator ================= */
+let simPolicy = 'size_aware';
+const POL = ['even_split', 'size_curve', 'size_aware'];
+const POL_COLOR = { even_split: '#FF8A3D', size_curve: '#B06CFF', size_aware: '#FF2E97' };
+function simHTML() {
+  return `<section class="demo sim" aria-labelledby="simTitle">
+    <div class="demo-head"><p class="label"><b>//</b> live_simulation</p><h2 id="simTitle">${t('sim_title')}</h2><p>${t('sim_note')}</p></div>
+    <div class="sim-pick" role="radiogroup" aria-label="${t('sim_title')}">${POL.map(k => `<button type="button" role="radio" data-pol="${k}" aria-checked="${k === simPolicy}"><i style="background:${POL_COLOR[k]}"></i>${t('sim_pol')[k]}</button>`).join('')}</div>
+    <p class="sim-desc" id="simDesc"></p>
+    <div class="sim-kpis" id="simKpis"></div>
+    <div class="sim-grid">
+      <figure class="sim-card"><figcaption><span>${t('sim_chart')}</span><span class="sim-leg" id="simLeg"></span></figcaption><div class="sbars" id="simBars"></div></figure>
+      <figure class="sim-card"><figcaption><span>${t('sim_curve_title')}</span><span class="sim-leg"><span><i style="background:#F3EEFF"></i>${t('sim_demand')}</span><span><i style="background:#FF8A3D"></i>${t('sim_stock')}</span></span></figcaption><div class="sbars" id="simCurve"></div></figure>
+    </div>
+  </section>`;
+}
+const fmtPct = (v, d = 1) => (v * 100).toFixed(d) + '%';
+function barsHTML(series, max, fmt) {
+  return SIM.sizes.map((s, i) => `<div class="sb-col"><div class="sb-plot">${series.map(x => `<span class="sb" style="--v:${Math.min(1, x.data[i] / max)};background:${x.color}" title="${x.label} · ${s}: ${fmt(x.data[i])}"><em>${fmt(x.data[i])}</em></span>`).join('')}</div><span class="sb-x">${s}</span></div>`).join('');
+}
+function renderSim() {
+  const cur = SIM.policies.even_split, sel = SIM.policies[simPolicy], same = simPolicy === 'even_split';
+  $$('.sim-pick button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.pol === simPolicy)));
+  $('#simDesc').textContent = t('sim_desc')[simPolicy];
+  const d = (a, b, lowerBetter, text) => {
+    if (same) return `<span class="sk-d">● ${t('sim_base')}</span>`;
+    const r = b / a - 1;
+    if (Math.abs(r) < .01) return `<span class="sk-d">● ${text} ${t('sim_vs')}</span>`;
+    const good = lowerBetter ? r < 0 : r > 0;
+    return `<span class="sk-d ${good ? 'good' : 'bad'}">${r < 0 ? '▼' : '▲'} ${text} ${t('sim_vs')}</span>`;
+  };
+  const rel = (a, b) => { const r = b / a - 1; return (r > 0 ? '+' : '') + Math.round(r * 100) + '%'; };
+  const nf = n => n.toLocaleString(state.lang === 'es' ? 'es-BO' : 'en-US');
+  const k = t('sim_k');
+  $('#simKpis').innerHTML = [
+    [k[0], fmtPct(sel.stockout), d(cur.stockout, sel.stockout, true, rel(cur.stockout, sel.stockout))],
+    [k[1], fmtPct(sel.fill), d(cur.fill, sel.fill, false, `+${((sel.fill - cur.fill) * 100).toFixed(1)} pp`)],
+    [k[2], nf(sel.lost), d(cur.lost, sel.lost, true, rel(cur.lost, sel.lost))],
+    [k[3], nf(sel.inv), d(cur.inv, sel.inv, true, rel(cur.inv, sel.inv))],
+  ].map(([l, v, dd]) => `<div class="sk"><span class="sk-l">${l}</span><span class="sk-v">${v}</span>${dd}</div>`).join('');
+  const series = [{ label: t('sim_today'), data: cur.by_size, color: POL_COLOR.even_split }];
+  if (!same) series.push({ label: t('sim_pol')[simPolicy], data: sel.by_size, color: POL_COLOR[simPolicy] });
+  $('#simLeg').innerHTML = series.map(s => `<span><i style="background:${s.color}"></i>${s.label}</span>`).join('');
+  $('#simBars').innerHTML = barsHTML(series, .14, v => fmtPct(v));
+}
+function initSim() {
+  if (!$('#simBars')) return;
+  $('#simCurve').innerHTML = barsHTML([{ label: t('sim_demand'), data: SIM.demand, color: '#F3EEFF' }, { label: t('sim_stock'), data: SIM.stock, color: '#FF8A3D' }], .32, v => fmtPct(v, 0));
+  $('.sim-pick').addEventListener('click', e => { const b = e.target.closest('button[data-pol]'); if (!b) return; simPolicy = b.dataset.pol; renderSim(); });
+  $('.sim-pick').addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    simPolicy = POL[(POL.indexOf(simPolicy) + (e.key === 'ArrowRight' ? 1 : 2)) % 3];
+    renderSim();
+    $(`.sim-pick [data-pol="${simPolicy}"]`).focus();
+  });
+  renderSim();
+}
+
 /* ================= skills network ================= */
 const graph = (() => {
   const GROUP_COLOR = { ai: '#B06CFF', data: '#FF8A3D', auto: '#F3EEFF' };
   const SKILL_GROUP = {
     'Python': 'data', 'pandas': 'data', 'ETL': 'data', 'EDA': 'data', 'Data Visualization': 'data', 'Power BI': 'data', 'KPI Development': 'data', 'Streamlit': 'data', 'Dash': 'data', 'Flask': 'data',
     'Claude AI': 'ai', 'LLMs': 'ai', 'BERT': 'ai', 'NLP': 'ai', 'spaCy': 'ai', 'Prophet': 'ai', 'Predictive Analytics': 'ai', 'Human-in-the-loop': 'ai',
+    'Databricks': 'data', 'PySpark': 'data', 'SQL': 'data', 'MLflow': 'ai', 'Genie': 'ai', 'CI/CD': 'auto',
     'Power Automate': 'auto', 'SharePoint': 'auto', 'Web scraping': 'auto', 'cron': 'auto', 'Odoo': 'auto', 'Regex': 'auto', 'Requirements Gathering': 'auto',
   };
   const HUBS = [
+    { id: 'retail-lakehouse-databricks', kind: 'case', label: 'Retail Lakehouse', skills: ['Databricks', 'PySpark', 'SQL', 'Python', 'MLflow', 'Genie', 'ETL', 'Predictive Analytics', 'CI/CD', 'Requirements Gathering'] },
     { id: 'invoice-automation-ai', kind: 'case', label: 'Invoice Automation AI', skills: ['Python', 'Claude AI', 'LLMs', 'cron', 'Web scraping', 'Odoo', 'Human-in-the-loop'] },
     { id: 'review-sentiment-mbert', kind: 'case', label: 'Review Sentiment mBERT', skills: ['Python', 'BERT', 'NLP'] },
     { id: 'demand-forecast-prophet', kind: 'case', label: 'Demand Forecast', skills: ['Python', 'Prophet', 'Predictive Analytics'] },
