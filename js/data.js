@@ -46,7 +46,7 @@ export const I18N = {
     footer_made: 'un solo archivo · html · tailwind · javascript',
     case_back: '← Proyectos', case_problem: 'Problema', case_solution: 'Solución', case_results: 'Métricas y resultado', case_stack: 'Stack y enlaces',
     case_private: 'Código privado del cliente', case_repo: 'Ver repositorio en GitHub', case_prev: '← Anterior', case_next: 'Siguiente →',
-    media_pending: '▶ video próximamente', note_fictitious: 'Grabación del sistema real con datos ficticios.', note_mockup: 'Mockup basado en la presentación del proyecto.', note_outputs: 'Resultados reales de la ejecución en Databricks · cliente simulado y datos sintéticos.', target: 'objetivo', see_case: 'Ver caso →', role: 'Rol',
+    media_pending: '▶ video próximamente', note_fictitious: 'Grabación del sistema real con datos ficticios.', note_mockup: 'Mockup basado en la presentación del proyecto.', note_outputs: 'Resultados reales de la ejecución en Databricks · cliente simulado y datos sintéticos.', note_app: 'La Databricks App del proyecto con los resultados reales de la ejecución · cliente simulado y datos sintéticos.', target: 'objetivo', see_case: 'Ver caso →', role: 'Rol',
   },
   en: {
     nav_profile: 'About', nav_projects: 'Projects', nav_exp: 'Experience', nav_stack: 'Stack', nav_contact: 'Contact', menu: 'menu',
@@ -92,7 +92,7 @@ export const I18N = {
     footer_made: 'one file · html · tailwind · javascript',
     case_back: '← Projects', case_problem: 'Problem', case_solution: 'Solution', case_results: 'Metrics & results', case_stack: 'Stack & links',
     case_private: 'Private client code', case_repo: 'View repository on GitHub', case_prev: '← Previous', case_next: 'Next →',
-    media_pending: '▶ video coming soon', note_fictitious: 'Recording of the real system using fictitious data.', note_mockup: 'Mockup based on the project presentation.', note_outputs: 'Real outputs from the Databricks run · simulated client and synthetic data.', target: 'target', see_case: 'View case →', role: 'Role',
+    media_pending: '▶ video coming soon', note_fictitious: 'Recording of the real system using fictitious data.', note_mockup: 'Mockup based on the project presentation.', note_outputs: 'Real outputs from the Databricks run · simulated client and synthetic data.', note_app: 'The project’s Databricks App with real outputs from the run · simulated client and synthetic data.', target: 'target', see_case: 'View case →', role: 'Role',
   }
 };
 /* ================= data (fuente: CV) ================= */
@@ -136,11 +136,12 @@ export const PROJECTS = [
     ],
     stack: ['Databricks', 'Lakeflow Pipelines', 'Auto Loader', 'Delta Lake', 'Unity Catalog', 'Lakeflow Jobs', 'MLflow', 'Genie', 'PySpark', 'SQL', 'scikit-learn', 'Asset Bundles', 'GitHub Actions', 'pytest', 'Claude Code'] },
   { slug: 'cre-deal-copilot', title: 'CRE Deal Due-Diligence Copilot', org: { es: 'Proyecto propio', en: 'Personal project' }, hue: 150, tags: ['ai', 'data', 'automation'],
-    media: { type: 'image', src: 'media/cre-deal-copilot.jpg', note: 'outputs' },
+    media: { type: 'image', src: 'media/cre-deal-copilot.jpg', note: 'app' },
     gallery: [
-      { src: 'media/cre-deal-copilot-catch.jpg', cap: { es: 'El hallazgo: el memorando dice 95% de ocupación y NOI de $1.26M; los datos reales dan 85.6% y $0.97M.', en: 'The catch: the memorandum claims 95% occupancy and $1.26M NOI; the actual data shows 85.6% and $0.97M.' } },
-      { src: 'media/cre-deal-copilot-architecture.jpg', cap: { es: 'Arquitectura: ai_parse_document → ai_query → evaluación en MLflow → underwriting en Python → memo → Databricks App.', en: 'Architecture: ai_parse_document → ai_query → MLflow evaluation → Python underwriting → memo → Databricks App.' } },
+      { src: 'media/cre-deal-copilot-app-underwriting.jpg', cap: { es: 'La app: lo que dice el vendedor vs. lo verificado, operación, deuda y el precio máximo para cada DSCR objetivo.', en: 'The app: seller claims vs. verified data, operations, debt and the maximum price for each target DSCR.' } },
+      { src: 'media/cre-deal-copilot-app-ask.jpg', cap: { es: 'Preguntas al analista: el LLM explica los valores que calcula el código, no hace las cuentas.', en: 'Ask the analyst: the LLM explains the values computed by code; it does not do the math.' } },
       { src: 'media/cre-deal-copilot-memo.jpg', cap: { es: 'Memo para el comité de inversión, generado por el LLM solo con los números verificados.', en: 'Investment committee memo, written by the LLM from the verified numbers only.' } },
+      { src: 'media/cre-deal-copilot-architecture.jpg', cap: { es: 'Arquitectura: ai_parse_document → ai_query → evaluación en MLflow → underwriting en Python → memo → Databricks App.', en: 'Architecture: ai_parse_document → ai_query → MLflow evaluation → Python underwriting → memo → Databricks App.' } },
       { src: 'media/cre-deal-copilot-trust.jpg', cap: { es: 'La salida de la IA se mide: 24/24 campos correctos y registro de los errores de IA que corregí.', en: 'AI output is measured: 24/24 fields correct and a log of the AI errors I fixed.' } },
     ],
     link: 'https://github.com/narichunarze/cre-deal-copilot',
