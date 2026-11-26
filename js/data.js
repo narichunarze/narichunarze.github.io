@@ -16,7 +16,7 @@ export const I18N = {
     impact_title: 'Impacto medible.',
     impact_note: 'Cifras de proyectos reales. Las marcadas como objetivo son metas de diseño del sistema, no resultados ya medidos.',
     projects_title: 'Proyectos.',
-    projects_note: 'Siete sistemas, de un lakehouse en Databricks a automatización con LLMs. Abre cada uno para ver el problema, la solución y los resultados.',
+    projects_note: 'Ocho sistemas, de lakehouses y copilotos con IA en Databricks a automatización con LLMs. Abre cada uno para ver el problema, la solución y los resultados.',
     sim_live_text: 'Pruébalo: elige una política de reposición y mira cómo cambian los quiebres por talla.', sim_live_sample: 'talla M · quiebre 13% → 3% · venta perdida −57%', sim_live_cta: 'Abrir simulador →', sim_float: '▶ simulador interactivo · clic para probar',
     sim_title: 'Simulador de reposición', sim_note: 'El mismo año, con exactamente la misma demanda, repetido con tres políticas. Datos reales del backtest del proyecto (KPIs: promedio de 3 semillas; gráfico: semilla 42).',
     sim_pol: { even_split: 'Reparto parejo (hoy)', size_curve: 'Curva de tallas', size_aware: 'Curva + demanda sin censura' },
@@ -46,7 +46,7 @@ export const I18N = {
     footer_made: 'un solo archivo · html · tailwind · javascript',
     case_back: '← Proyectos', case_problem: 'Problema', case_solution: 'Solución', case_results: 'Métricas y resultado', case_stack: 'Stack y enlaces',
     case_private: 'Código privado del cliente', case_repo: 'Ver repositorio en GitHub', case_prev: '← Anterior', case_next: 'Siguiente →',
-    media_pending: '▶ video próximamente', note_fictitious: 'Grabación del sistema real con datos ficticios.', note_mockup: 'Mockup basado en la presentación del proyecto.', target: 'objetivo', see_case: 'Ver caso →', role: 'Rol',
+    media_pending: '▶ video próximamente', note_fictitious: 'Grabación del sistema real con datos ficticios.', note_mockup: 'Mockup basado en la presentación del proyecto.', note_outputs: 'Resultados reales de la ejecución en Databricks · cliente simulado y datos sintéticos.', target: 'objetivo', see_case: 'Ver caso →', role: 'Rol',
   },
   en: {
     nav_profile: 'About', nav_projects: 'Projects', nav_exp: 'Experience', nav_stack: 'Stack', nav_contact: 'Contact', menu: 'menu',
@@ -62,7 +62,7 @@ export const I18N = {
     impact_title: 'Measured impact.',
     impact_note: 'Figures from real projects. Those marked as target are system design goals, not results already measured.',
     projects_title: 'Projects.',
-    projects_note: 'Seven systems, from a Databricks lakehouse to LLM automation. Open each one to see the problem, the solution and the results.',
+    projects_note: 'Eight systems, from Databricks lakehouses and AI copilots to LLM automation. Open each one to see the problem, the solution and the results.',
     sim_live_text: 'Try it: pick a replenishment policy and watch stockouts change by size.', sim_live_sample: 'size M · stockout 13% → 3% · lost sales −57%', sim_live_cta: 'Open simulator →', sim_float: '▶ interactive simulator · click to try',
     sim_title: 'Replenishment simulator', sim_note: 'The same year, with exactly the same demand, replayed under three policies. Real data from the project backtest (KPIs: average of 3 seeds; chart: seed 42).',
     sim_pol: { even_split: 'Even split (today)', size_curve: 'Size curve', size_aware: 'Size curve + uncensored demand' },
@@ -92,7 +92,7 @@ export const I18N = {
     footer_made: 'one file · html · tailwind · javascript',
     case_back: '← Projects', case_problem: 'Problem', case_solution: 'Solution', case_results: 'Metrics & results', case_stack: 'Stack & links',
     case_private: 'Private client code', case_repo: 'View repository on GitHub', case_prev: '← Previous', case_next: 'Next →',
-    media_pending: '▶ video coming soon', note_fictitious: 'Recording of the real system using fictitious data.', note_mockup: 'Mockup based on the project presentation.', target: 'target', see_case: 'View case →', role: 'Role',
+    media_pending: '▶ video coming soon', note_fictitious: 'Recording of the real system using fictitious data.', note_mockup: 'Mockup based on the project presentation.', note_outputs: 'Real outputs from the Databricks run · simulated client and synthetic data.', target: 'target', see_case: 'View case →', role: 'Role',
   }
 };
 /* ================= data (fuente: CV) ================= */
@@ -135,6 +135,25 @@ export const PROJECTS = [
       { v: '12/12', l: { es: 'benchmarks del agente Genie (6 → 9 → 10 → 12)', en: 'Genie agent benchmarks (6 → 9 → 10 → 12)' } },
     ],
     stack: ['Databricks', 'Lakeflow Pipelines', 'Auto Loader', 'Delta Lake', 'Unity Catalog', 'Lakeflow Jobs', 'MLflow', 'Genie', 'PySpark', 'SQL', 'scikit-learn', 'Asset Bundles', 'GitHub Actions', 'pytest', 'Claude Code'] },
+  { slug: 'cre-deal-copilot', title: 'CRE Deal Due-Diligence Copilot', org: { es: 'Proyecto propio', en: 'Personal project' }, hue: 150, tags: ['ai', 'data', 'automation'],
+    media: { type: 'image', src: 'media/cre-deal-copilot.jpg', note: 'outputs' },
+    gallery: [
+      { src: 'media/cre-deal-copilot-catch.jpg', cap: { es: 'El hallazgo: el memorando dice 95% de ocupación y NOI de $1.26M; los datos reales dan 85.6% y $0.97M.', en: 'The catch: the memorandum claims 95% occupancy and $1.26M NOI; the actual data shows 85.6% and $0.97M.' } },
+      { src: 'media/cre-deal-copilot-architecture.jpg', cap: { es: 'Arquitectura: ai_parse_document → ai_query → evaluación en MLflow → underwriting en Python → memo → Databricks App.', en: 'Architecture: ai_parse_document → ai_query → MLflow evaluation → Python underwriting → memo → Databricks App.' } },
+      { src: 'media/cre-deal-copilot-memo.jpg', cap: { es: 'Memo para el comité de inversión, generado por el LLM solo con los números verificados.', en: 'Investment committee memo, written by the LLM from the verified numbers only.' } },
+      { src: 'media/cre-deal-copilot-trust.jpg', cap: { es: 'La salida de la IA se mide: 24/24 campos correctos y registro de los errores de IA que corregí.', en: 'AI output is measured: 24/24 fields correct and a log of the AI errors I fixed.' } },
+    ],
+    link: 'https://github.com/narichunarze/cre-deal-copilot',
+    role: { es: 'Engagement FDE simulado · nov 2026', en: 'Simulated FDE engagement · Nov 2026' },
+    problem: { es: 'Una firma de inversión inmobiliaria (cliente simulado) revisa cada oportunidad de compra a mano: el memorando de venta en PDF, el rent roll y el estado de resultados de 12 meses (T-12). Toma días por operación y las cifras del vendedor suelen venir infladas: pagar de más o tomar una deuda que el activo no cubre son errores caros.', en: 'A real estate investment firm (simulated client) reviews every acquisition by hand: the seller\'s Offering Memorandum PDF, the rent roll and the trailing-12-month statement (T-12). It takes days per deal and the seller\'s numbers are often inflated: overpaying, or taking on debt the asset cannot cover, are costly mistakes.' },
+    solution: { es: 'Un copiloto en Databricks que lee el PDF con ai_parse_document, extrae lo que afirma el vendedor con ai_query y lo contrasta con los datos reales. Las métricas (ocupación, NOI, cap rate, DSCR, morosidad) las calcula código probado, no el LLM; la IA solo lee y redacta el memo para el comité. La extracción se mide en MLflow y el job se detiene si baja la precisión. Todo se despliega como código con Asset Bundles y GitHub Actions, con una Databricks App con chat, y lo desarrollé AI-first con Claude Code, registrando cada error de la IA que corregí.', en: 'A Databricks copilot that reads the PDF with ai_parse_document, extracts the seller\'s claims with ai_query and checks them against the actual data. The metrics (occupancy, NOI, cap rate, DSCR, delinquency) are computed by tested code, not the LLM; the AI only reads and writes the committee memo. Extraction is scored in MLflow and the job stops if accuracy drops. Everything is deployed as code with Asset Bundles and GitHub Actions, with a Databricks App and chat, and I built it AI-first with Claude Code, logging every AI error I fixed.' },
+    metrics: [
+      { v: '+30%', l: { es: 'NOI inflado en un memorando, detectado automáticamente', en: 'NOI overstated in one memorandum, caught automatically' } },
+      { v: '95% → 85.6%', l: { es: 'ocupación declarada vs. verificada en el mismo deal', en: 'claimed vs. verified occupancy on the same deal' } },
+      { v: '24/24', l: { es: 'campos del memorando extraídos correctamente (evaluado en MLflow)', en: 'memorandum fields extracted correctly (scored in MLflow)' } },
+      { v: { es: 'Días → min', en: 'Days → min' }, l: { es: 'de revisión manual a un primer filtro automático', en: 'from manual review to an automated first screen' } },
+    ],
+    stack: ['Databricks', 'AI Functions', 'ai_query', 'ai_parse_document', 'Unity Catalog', 'Delta Lake', 'Lakeflow Jobs', 'MLflow', 'Databricks Apps', 'PySpark', 'SQL', 'Streamlit', 'Asset Bundles', 'GitHub Actions', 'pytest', 'Claude Code'] },
   { slug: 'ai-data-risk-scanner', title: 'AI Data Risk Scanner', org: { es: 'Proyecto propio', en: 'Personal project' }, hue: -20, tags: ['ai', 'nlp', 'security'], media: null, demo: true, link: 'https://github.com/narichunarze/AI-Data-Risk-Scanner',
     role: { es: 'Proyecto propio', en: 'Personal project' },
     problem: { es: 'Datos personales, información financiera y credenciales terminan escondidos en texto no estructurado, donde nadie los busca hasta que se filtran.', en: 'Personal data, financial information and credentials end up hidden in unstructured text, where nobody looks until they leak.' },
@@ -223,8 +242,8 @@ export const EXPERIENCE = [
 ];
 
 export const STACK = [
-  { k: 'ai_ml', title: { es: 'IA y Machine Learning', en: 'AI & Machine Learning' }, items: ['Generative AI', 'Agentic AI', 'Genie (Databricks)', 'AI-assisted development (Claude Code)', 'LLMs', 'RAG', 'Prompt Engineering', 'NLP', 'BERT / mBERT', 'Sentiment Analysis', 'SVM', 'Logistic Regression', 'Naive Bayes', 'Neural Networks', 'Prophet', 'Predictive Analytics', 'Human-in-the-loop'] },
-  { k: 'data_bi', title: { es: 'Datos y BI', en: 'Data & BI' }, items: ['Databricks', 'PySpark', 'Lakeflow Pipelines', 'Delta Lake', 'Unity Catalog', 'MLflow', 'Python', 'pandas', 'SQL', 'Power BI', 'Statistical Analysis', 'Data Visualization', 'KPI Development', 'Data Cleaning & ETL', 'EDA'] },
+  { k: 'ai_ml', title: { es: 'IA y Machine Learning', en: 'AI & Machine Learning' }, items: ['Generative AI', 'Agentic AI', 'Genie (Databricks)', 'Databricks AI Functions (ai_query, ai_parse_document)', 'AI-assisted development (Claude Code)', 'LLMs', 'RAG', 'Prompt Engineering', 'NLP', 'BERT / mBERT', 'Sentiment Analysis', 'SVM', 'Logistic Regression', 'Naive Bayes', 'Neural Networks', 'Prophet', 'Predictive Analytics', 'Human-in-the-loop'] },
+  { k: 'data_bi', title: { es: 'Datos y BI', en: 'Data & BI' }, items: ['Databricks', 'PySpark', 'Lakeflow Pipelines', 'Delta Lake', 'Unity Catalog', 'MLflow', 'Databricks Apps', 'Python', 'pandas', 'SQL', 'Power BI', 'Statistical Analysis', 'Data Visualization', 'KPI Development', 'Data Cleaning & ETL', 'EDA'] },
   { k: 'automation', title: { es: 'Automatización e ingeniería', en: 'Automation & engineering' }, items: ['Power Automate', 'Web Scraping', 'Cron', 'Docker / Compose', 'REST APIs', 'React', 'Node.js', 'TypeScript', 'Odoo', 'Git / GitHub', 'GitHub Actions (CI/CD)', 'Asset Bundles', 'pytest', 'Linux'] },
   { k: 'product', title: { es: 'Producto y procesos', en: 'Product & process' }, items: ['Requirements Gathering', 'Stakeholder Reporting', 'ITIL', 'Process Optimization', 'Project Management', 'Cross-functional Collaboration'] },
 ];

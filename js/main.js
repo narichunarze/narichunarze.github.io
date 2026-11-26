@@ -1,4 +1,4 @@
-import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU, SIM } from './data.js?v=20261125b';
+import { I18N, FACTS, IMPACT, TAGS, TAG_LABEL, PROJECTS, EXPERIENCE, STACK, LEADERSHIP, EDU, SIM } from './data.js?v=20261126a';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -431,6 +431,7 @@ const graph = (() => {
   };
   const HUBS = [
     { id: 'retail-lakehouse-databricks', kind: 'case', label: 'Retail Lakehouse', skills: ['Databricks', 'PySpark', 'SQL', 'Python', 'MLflow', 'Genie', 'ETL', 'Predictive Analytics', 'CI/CD', 'Requirements Gathering'] },
+    { id: 'cre-deal-copilot', kind: 'case', label: 'CRE Deal Copilot', skills: ['Databricks', 'PySpark', 'SQL', 'Python', 'MLflow', 'LLMs', 'Streamlit', 'CI/CD', 'Requirements Gathering'] },
     { id: 'invoice-automation-ai', kind: 'case', label: 'Invoice Automation AI', skills: ['Python', 'Claude AI', 'LLMs', 'cron', 'Web scraping', 'Odoo', 'Human-in-the-loop'] },
     { id: 'review-sentiment-mbert', kind: 'case', label: 'Review Sentiment mBERT', skills: ['Python', 'BERT', 'NLP'] },
     { id: 'demand-forecast-prophet', kind: 'case', label: 'Demand Forecast', skills: ['Python', 'Prophet', 'Predictive Analytics'] },
